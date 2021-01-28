@@ -1,12 +1,19 @@
 extends KinematicBody2D
 
+#FLAGS
+var flag_wait = false
+#EXPORTS
 export(String, "QUESTS", "REWARDS") var my_group = "QUESTS"
+export(Vector2)   var my_speed
+var my_dir = Vector2.RIGHT
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	add_to_group(my_group)
 
+func _physics_process(_delta):
+	if !flag_wait: 
+		move_and_slide(my_speed*my_dir)
 
-
-#func _process(delta):
-#	pass
+func waiting(status):
+	flag_wait = status

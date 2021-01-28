@@ -18,12 +18,13 @@ height = 12.7188
 [node name="playerCommon" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
+my_speed = Vector2( 100, 0 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="animatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -6 )
 scale = Vector2( 0.7, 0.8 )
 frames = SubResource( 1 )
 animation = "IDLE"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="collisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
