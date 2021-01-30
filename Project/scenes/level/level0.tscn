@@ -28,6 +28,22 @@ my_speed = Vector2( 50, 0 )
 position = Vector2( -241.974, 158.273 )
 my_speed = Vector2( 50, 0 )
 
+[node name="playerCommon3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -340.678, 158.273 )
+my_speed = Vector2( 50, 0 )
+
+[node name="playerCommon4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 590.471, 149.949 )
+my_status = 1
+my_direcction = 0
+my_speed = Vector2( 50, 0 )
+
+[node name="playerCommon5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 454.901, 152.327 )
+my_direcction = 0
+my_speed = Vector2( 50, 0 )
+my_name = "killer66"
+
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 [connection signal="add_notification" from="npcCommon" to="HUD" method="_on_npc_add_notification"]
 [connection signal="delete_notification" from="npcCommon" to="HUD" method="_on_npc_delete_notification"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/npcCommonVersion1.png-556826743bf52bf99f7d6a1df0c5e5cf.stex"
+path="res://.import/playerCommon.png-02c6f0eeb1a4253fd473b6c63c88052a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/img/npcCommonVersion1.png"
-dest_files=[ "res://.import/npcCommonVersion1.png-556826743bf52bf99f7d6a1df0c5e5cf.stex" ]
+source_file="res://assets/player/playerCommon.png"
+dest_files=[ "res://.import/playerCommon.png-02c6f0eeb1a4253fd473b6c63c88052a.stex" ]
 
 [params]
 
