@@ -6,7 +6,7 @@ const  ICON_ROUTE = "res://assets/gui/img/icons_%s.png"
 var request_player = []
 var attend_request
 #SIGNALS
-signal add_notification(status)
+signal add_notification(status, number)
 signal delete_notification 
 
 func _ready():
@@ -20,20 +20,20 @@ func _ready():
 
 func _on_area2DVision_body_entered(body):
 	$animatedSprite.flip_h = body.get_flip()
+	# asociar el jugador detectado a listado de request
+	request_player.push_back(body)
 	if   body.is_in_group(DATA.get_key_status(0)):
 		set_icon_status(0)
 		$animatedSprite.play("IDLE")
-		emit_signal("add_notification", 0)
+		emit_signal("add_notification", 0, request_player.size())
 	elif body.is_in_group(DATA.get_key_status(1)):
 		set_icon_status(1)
 		$animatedSprite.play("IDLE")
-		emit_signal("add_notification", 1)
+		emit_signal("add_notification", 1, request_player.size())
 	else:
 		pass
 
 func _on_area2DInteraction_body_entered(body):
-	# asociar el jugador detectado a listado de request
-	request_player.push_back(body)
 	body.waiting(true)
 	if(defeat_condition()):
 		shutdown()
@@ -80,6 +80,6 @@ func defeat_condition():
 	return get_parent().level_defeat == request_player.size()
 
 func shutdown():
-	$area2DInteraction.set_monitoring(false)
-	$area2DVision.set_monitoring(false)
+	$area2DInteraction.set_deferred("monitoring", false)
+	$area2DVision.set_deferred("monitoring", false)
 	

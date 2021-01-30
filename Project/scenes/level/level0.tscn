@@ -53,6 +53,7 @@ my_name = "killer66"
 
 [node name="playerCommon6" parent="." instance=ExtResource( 4 )]
 position = Vector2( -64, 160 )
+my_status = 1
 my_speed = Vector2( 30, 0 )
 
 [node name="playerCommon7" parent="." instance=ExtResource( 4 )]
