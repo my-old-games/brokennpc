@@ -1,26 +1,21 @@
 extends KinematicBody2D
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+#CONST
+const  DATA        = preload("res://scripts/dataManager.gd")
+#VAR
 var request_player = []
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	$labelStateFix.text = "Oh...perdi mi codigo!"
 
 func _on_area2DVision_body_entered(body):
-	if   body.is_in_group("QUESTS"):
+	if   body.is_in_group(DATA.get_key_status(0)):
 		$labelStateFix.text = "DAR QUEST"
-	elif body.is_in_group("REWARDS"):
+		$questIcon.show()
+		$rewardIcon.hide()
+	elif body.is_in_group(DATA.get_key_status(1)):
 		$labelStateFix.text = "DAR REWARDS"
+		$questIcon.hide()
+		$rewardIcon.show()
 	else:
 		$labelStateFix.text = "FIX"
 
@@ -29,17 +24,9 @@ func _on_area2DInteraction_body_entered(body):
 	request_player.append(body)
 	body.waiting(true)
 
-func _on_HUD_give_quest():
+func _on_HUD_orden_npc(status):
 	if !request_player.empty():
-		if request_player.back().is_in_group("QUESTS"):
+		var key_status = DATA.get_key_status(status)
+		if request_player.back().is_in_group(key_status):
 			var player = request_player.pop_back()
-			player.my_dir = Vector2.LEFT
-			player.waiting(false)
-			
-
-func _on_HUD_give_reward():
-	if !request_player.empty():
-		if request_player.back().is_in_group("REWARDS"):
-			var player = request_player.pop_back()
-			player.my_dir = Vector2.LEFT
-			player.waiting(false)
+			player.set_status(false)

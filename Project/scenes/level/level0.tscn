@@ -20,16 +20,13 @@ shape = SubResource( 1 )
 position = Vector2( 195.385, 152.159 )
 
 [node name="playerCommon" parent="." instance=ExtResource( 2 )]
-modulate = Color( 0.694118, 0.454902, 0.454902, 1 )
-self_modulate = Color( 0.576471, 0.388235, 0.258824, 1 )
-position = Vector2( 1.06599, 160.23 )
+position = Vector2( -111.981, 158.983 )
+my_status = 1
 my_speed = Vector2( 50, 0 )
 
 [node name="playerCommon2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -241.974, 158.273 )
-my_group = "REWARDS"
 my_speed = Vector2( 50, 0 )
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
-[connection signal="give_quest" from="HUD" to="npcCommon" method="_on_HUD_give_quest"]
-[connection signal="give_reward" from="HUD" to="npcCommon" method="_on_HUD_give_reward"]
+[connection signal="orden_npc" from="HUD" to="npcCommon" method="_on_HUD_orden_npc"]
