@@ -44,3 +44,4 @@ func get_flip():
 
 func fix_flip():
 	$animatedSprite.position.x = $animatedSprite.position.x * -1 
+

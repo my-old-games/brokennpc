@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/npc/npcCommon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/playerCommon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/gui/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/player/playerMage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/levelManager.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 717.212, 21.3126 )
 
 [node name="level0" type="Node2D"]
+script = ExtResource( 5 )
+level_defeat = 5
+level_win = 7
 
 [node name="debugFloor" type="StaticBody2D" parent="."]
 position = Vector2( 33.9028, -121.838 )
@@ -20,31 +25,41 @@ shape = SubResource( 1 )
 position = Vector2( 195.385, 152.159 )
 
 [node name="playerCommon" parent="." instance=ExtResource( 2 )]
-position = Vector2( -111.981, 158.983 )
+position = Vector2( -160, 160 )
 my_status = 1
-my_speed = Vector2( 50, 0 )
+my_speed = Vector2( 30, 0 )
 
 [node name="playerCommon2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -241.974, 158.273 )
-my_speed = Vector2( 50, 0 )
+my_speed = Vector2( 30, 0 )
 
 [node name="playerCommon3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -340.678, 158.273 )
-my_speed = Vector2( 50, 0 )
+my_speed = Vector2( 30, 0 )
 
 [node name="playerCommon4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 590.471, 149.949 )
 my_status = 1
 my_direcction = 0
-my_speed = Vector2( 50, 0 )
+my_speed = Vector2( 30, 0 )
 
 [node name="playerCommon5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 454.901, 152.327 )
 my_direcction = 0
-my_speed = Vector2( 50, 0 )
+my_speed = Vector2( 30, 0 )
 my_name = "killer66"
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="playerCommon6" parent="." instance=ExtResource( 4 )]
+position = Vector2( -64, 160 )
+my_speed = Vector2( 30, 0 )
+
+[node name="playerCommon7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 832, 160 )
+my_status = 1
+my_direcction = 0
+my_speed = Vector2( 30, 0 )
 [connection signal="add_notification" from="npcCommon" to="HUD" method="_on_npc_add_notification"]
 [connection signal="delete_notification" from="npcCommon" to="HUD" method="_on_npc_delete_notification"]
 [connection signal="orden_npc" from="HUD" to="npcCommon" method="_on_HUD_orden_npc"]

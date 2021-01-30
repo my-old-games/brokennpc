@@ -4,6 +4,7 @@ const  DATA        = preload("res://scripts/dataManager.gd")
 const  ICON_ROUTE = "res://assets/gui/img/icons_%s.png"
 #VAR
 var request_player = []
+var attend_request
 #SIGNALS
 signal add_notification(status)
 signal delete_notification 
@@ -12,6 +13,10 @@ func _ready():
 	$labelStateFix.text = "Oh...perdi mi codigo!"
 	$animatedSprite.play("PANIC")
 	$effectPlayer.queue("BLINK_DIALOG")
+	attend_request = 0
+	print(win_condition())
+	print(defeat_condition())
+	
 
 func _on_area2DVision_body_entered(body):
 	$animatedSprite.flip_h = body.get_flip()
@@ -30,6 +35,9 @@ func _on_area2DInteraction_body_entered(body):
 	# asociar el jugador detectado a listado de request
 	request_player.push_back(body)
 	body.waiting(true)
+	if(defeat_condition()):
+		shutdown()
+		$animatedSprite.play("DEFEAT")
 
 func _on_HUD_orden_npc(status):
 	if !request_player.empty():
@@ -39,6 +47,9 @@ func _on_HUD_orden_npc(status):
 			set_status_animation(status)
 			player.set_status(false)
 			emit_signal("delete_notification")
+			attend_request += 1
+			if(win_condition()):
+				$animatedSprite.play("VICTORY")
 
 func set_status_animation(status):
 	match status:
@@ -48,9 +59,8 @@ func set_status_animation(status):
 			$animatedSprite.play("REWARD")
 
 func set_icon_status(status):
-	$effectPlayer.queue("STATUS_HIDE")
 	$statusIcon.texture = load(ICON_ROUTE % str(status))
-	$effectPlayer.queue("STATUS_SHOW")
+	$effectPlayer.queue("BLINK_STATUS")
 
 func _on_animatedSprite_animation_finished():
 	match $animatedSprite.get_animation():
@@ -62,3 +72,14 @@ func _on_animatedSprite_animation_finished():
 			print("WIN")
 		_:
 			$animatedSprite.play("IDLE")
+
+func win_condition():
+	return get_parent().level_win    == attend_request
+
+func defeat_condition():
+	return get_parent().level_defeat == request_player.size()
+
+func shutdown():
+	$area2DInteraction.set_monitoring(false)
+	$area2DVision.set_monitoring(false)
+	
