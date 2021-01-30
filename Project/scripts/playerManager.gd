@@ -1,14 +1,12 @@
 extends KinematicBody2D
-
 #CONST
 const  DATA        = preload("res://scripts/dataManager.gd")
 #EXPORTS
 export(DATA.STATUS)      var my_status
 export(DATA.DIRECCTIONS) var my_direcction
 export(Vector2)          var my_speed
-#FLAGS
-var flag_wait  = false
 #VAR
+var flag_wait  = false
 var direcction 
 
 func _ready():

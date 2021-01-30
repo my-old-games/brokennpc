@@ -29,4 +29,6 @@ position = Vector2( -241.974, 158.273 )
 my_speed = Vector2( 50, 0 )
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+[connection signal="add_notification" from="npcCommon" to="HUD" method="_on_npc_add_notification"]
+[connection signal="delete_notification" from="npcCommon" to="HUD" method="_on_npc_delete_notification"]
 [connection signal="orden_npc" from="HUD" to="npcCommon" method="_on_HUD_orden_npc"]
