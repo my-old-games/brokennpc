@@ -9,85 +9,85 @@
 [ext_resource path="res://assets/gui/font/damase_v.2.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://scripts/landingManager.gd" type="Script" id=8]
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.109551, 0.421348, 0.957865 )
 colors = PoolColorArray( 1, 0.860168, 0.382813, 1, 1, 0.895352, 0.538105, 1, 1, 0.988568, 0.949541, 1 )
 
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 16 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=3]
 size = 6
 use_filter = true
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 outline_size = 2
 outline_color = Color( 0.0117647, 0.176471, 0.0235294, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 size = 12
 outline_size = 1
 outline_color = Color( 0.00784314, 0.00784314, 0.00784314, 1 )
 use_filter = true
 font_data = ExtResource( 7 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 320, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 320, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 320, 32, 64 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 320, 32, 64 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 320, 32, 64 )
-
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
-region = Rect2( 96, 320, 32, 64 )
+region = Rect2( 64, 320, 32, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 128, 32, 64 )
+region = Rect2( 96, 320, 32, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
-region = Rect2( 32, 128, 32, 64 )
+region = Rect2( 64, 320, 32, 64 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 128, 32, 64 )
+region = Rect2( 96, 320, 32, 64 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 1 )
+region = Rect2( 0, 128, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 128, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 128, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
 region = Rect2( 96, 128, 32, 64 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": false,
 "name": "READ",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
 "name": "IDLE",
 "speed": 2.0
 } ]
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=17]
 length = 0.1
 step = 0.01
 tracks/0/type = "value"
@@ -115,8 +115,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.662745, 0.635294, 0.635294, 1 ) ]
 }
 
-[sub_resource type="Animation" id=15]
-resource_name = "HIDE_ICON"
+[sub_resource type="Animation" id=18]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("hbcMain/vbcNPC/ccIcon/TextureRect:modulate")
@@ -161,7 +160,7 @@ script = ExtResource( 8 )
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 17 )
+texture = SubResource( 2 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -172,7 +171,7 @@ margin_left = 1.83208
 margin_top = 209.312
 margin_right = 206.832
 margin_bottom = 242.312
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.32549, 0.313726, 0.313726, 1 )
 text = "Global Game Jam Online 2021
 "
@@ -198,7 +197,7 @@ alignment = 1
 margin_top = 82.0
 margin_right = 214.0
 margin_bottom = 98.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "BROKEN NPC"
 
 [node name="ccButton" type="CenterContainer" parent="hbcMain/vbcIntro"]
@@ -216,11 +215,10 @@ texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="hbcMain/vbcIntro/ccButton/btnPlay"]
-margin_top = 0.625
 margin_right = 64.0
-margin_bottom = 30.625
+margin_bottom = 30.0
 rect_min_size = Vector2( 64, 30 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "PLAY"
 align = 1
 valign = 1
@@ -259,13 +257,14 @@ rect_min_size = Vector2( 64, 94 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="hbcMain/vbcNPC/ccNPC"]
 scale = Vector2( 2, 2 )
-frames = SubResource( 13 )
+frames = SubResource( 16 )
 animation = "IDLE"
+frame = 1
 playing = true
 centered = false
 
 [node name="effectPlayer" type="AnimationPlayer" parent="."]
-anims/DROP_LABEL = SubResource( 14 )
-anims/HIDE_ICON = SubResource( 15 )
+anims/DROP_LABEL = SubResource( 17 )
+anims/HIDE_ICON = SubResource( 18 )
 [connection signal="pressed" from="hbcMain/vbcIntro/ccButton/btnPlay" to="." method="_on_btnPlay_pressed"]
 [connection signal="animation_finished" from="effectPlayer" to="." method="_on_effectPlayer_animation_finished"]

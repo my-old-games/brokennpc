@@ -1,0 +1,158 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/npc/img/npcCommon.png" type="Texture" id=1]
+[ext_resource path="res://assets/gui/font/marietta-seven.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/gui/font/damase_v.2.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.109551, 0.421348, 0.957865 )
+colors = PoolColorArray( 1, 0.860168, 0.382813, 1, 1, 0.895352, 0.538105, 1, 1, 0.988568, 0.949541, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 6
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+outline_size = 2
+outline_color = Color( 0.0117647, 0.176471, 0.0235294, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 5
+outline_size = 1
+outline_color = Color( 0.027451, 0.0313726, 0.027451, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=25]
+size = 8
+outline_size = 1
+outline_color = Color( 0.2, 0.156863, 0.0196078, 1 )
+use_filter = true
+extra_spacing_top = 4
+extra_spacing_char = 1
+font_data = ExtResource( 7 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 384, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 384, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 384, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 384, 32, 64 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "WIN",
+"speed": 5.0
+} ]
+
+[node name="Landing" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 1.83208
+margin_top = 209.312
+margin_right = 206.832
+margin_bottom = 242.312
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.32549, 0.313726, 0.313726, 1 )
+text = "Global Game Jam Online 2021
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hbcMain" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbcIntro" type="VBoxContainer" parent="hbcMain"]
+margin_left = 51.0
+margin_right = 265.0
+margin_bottom = 216.0
+custom_constants/separation = 8
+alignment = 1
+
+[node name="cccTitle" type="CenterContainer" parent="hbcMain/vbcIntro"]
+margin_top = 83.0
+margin_right = 214.0
+margin_bottom = 99.0
+
+[node name="Title" type="Label" parent="hbcMain/vbcIntro/cccTitle"]
+margin_right = 214.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 4 )
+text = "BROKEN NPC"
+
+[node name="cccEstudio" type="CenterContainer" parent="hbcMain/vbcIntro"]
+margin_top = 107.0
+margin_right = 214.0
+margin_bottom = 113.0
+
+[node name="Title2" type="Label" parent="hbcMain/vbcIntro/cccEstudio"]
+margin_left = 63.0
+margin_right = 151.0
+margin_bottom = 6.0
+custom_fonts/font = SubResource( 24 )
+text = "Chatora Games"
+
+[node name="cccTeam" type="CenterContainer" parent="hbcMain/vbcIntro"]
+margin_top = 121.0
+margin_right = 214.0
+margin_bottom = 133.0
+
+[node name="Title3" type="Label" parent="hbcMain/vbcIntro/cccTeam"]
+margin_left = 22.0
+margin_right = 191.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 25 )
+text = "Team: Alus Martinez y Gaston Caminiti"
+
+[node name="vbcNPC" type="VBoxContainer" parent="hbcMain"]
+margin_left = 269.0
+margin_right = 333.0
+margin_bottom = 216.0
+custom_constants/separation = -22
+alignment = 1
+
+[node name="ccNPC" type="CenterContainer" parent="hbcMain/vbcNPC"]
+margin_top = 61.0
+margin_right = 64.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 64, 94 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="hbcMain/vbcNPC/ccNPC"]
+scale = Vector2( 2, 2 )
+frames = SubResource( 19 )
+animation = "WIN"
+frame = 1
+playing = true
+centered = false

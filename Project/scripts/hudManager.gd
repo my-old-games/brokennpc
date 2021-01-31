@@ -28,7 +28,7 @@ func _on_npc_add_notification(status, number):
 
 func _on_npc_delete_notification():
 	var first_notification = $hbcNotification.get_children().pop_front()
-	$hbcNotification.remove_child(first_notification)
+	$NinePatchRect/hbcNotification.remove_child(first_notification)
 
 func _on_btn_pressed():
 	if isPlaying:
@@ -41,6 +41,7 @@ func _on_btn2_pressed():
 		emit_signal("orden_npc", 1)
 
 func create_tween(element, n):
+# Pooling para Tween - (No da el tiempo)
 #	if !tweens.empty():
 #		var tween = new_tween()
 #		tween.interpolate_property(element, "position", element.position, CENTER_KEY + (SPRITE_KEY * n) , 2 , Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -62,7 +63,7 @@ func new_tween():
 	return tween
 
 func _on_tween_end(object,_key):
-	$hbcNotification.add_child(request_notifications[keys.find(object)])
+	$NinePatchRect/hbcNotification.add_child(request_notifications[keys.find(object)])
 	object.hide()
 
 func _on_npcCommon_next_interface(status):

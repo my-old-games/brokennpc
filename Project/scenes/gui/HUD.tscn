@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/hudManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/img/buttons/button_0.png" type="Texture" id=2]
@@ -13,6 +13,13 @@ size = 7
 outline_size = 1
 outline_color = Color( 0.0823529, 0.0705882, 0.0705882, 1 )
 font_data = ExtResource( 5 )
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0.351124, 0.921348, 1 )
+colors = PoolColorArray( 0.364706, 0.360784, 0.27451, 1, 1, 1, 1, 0, 0.0588235, 0.0470588, 0.0470588, 0.486275 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 9 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
@@ -37,7 +44,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "KET_TEXT2"
 length = 0.06
 step = 0.01
@@ -54,7 +61,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "KET_TEXT3"
 length = 0.06
 step = 0.01
@@ -71,7 +78,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "NEXT_HIDE"
 tracks/0/type = "value"
 tracks/0/path = NodePath("vbcNext:modulate")
@@ -86,8 +93,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "NEXT_SHOW"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("vbcNext:modulate")
 tracks/0/interp = 1
@@ -156,10 +162,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hbcNotification" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_top = 4.0
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+margin_right = 3.05176e-05
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+texture = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hbcNotification" type="HBoxContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 16 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -228,10 +243,10 @@ __meta__ = {
 
 [node name="effectPlayer" type="AnimationPlayer" parent="."]
 anims/KET_TEXT = SubResource( 3 )
-anims/KET_TEXT2 = SubResource( 5 )
-anims/KET_TEXT3 = SubResource( 6 )
-anims/NEXT_HIDE = SubResource( 7 )
-anims/NEXT_SHOW = SubResource( 4 )
+anims/KET_TEXT2 = SubResource( 4 )
+anims/KET_TEXT3 = SubResource( 5 )
+anims/NEXT_HIDE = SubResource( 6 )
+anims/NEXT_SHOW = SubResource( 7 )
 [connection signal="pressed" from="hbcControls/btn" to="." method="_on_btn_pressed"]
 [connection signal="pressed" from="hbcControls/btn2" to="." method="_on_btn2_pressed"]
 [connection signal="pressed" from="vbcNext/ccbtn/btn3" to="." method="_on_btn3_pressed"]
