@@ -30,6 +30,7 @@ func switch_dir():
 	my_direcction = !my_direcction
 	set_direcction()
 	$animatedSprite.set_flip_h(!$animatedSprite.flip_h)
+	fix_flip()
 	$animatedSprite.play("WALK")
 
 func set_direcction():

@@ -74,6 +74,7 @@ animation = "WALK"
 playing = true
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -2 )
 shape = SubResource( 10 )
 
 [node name="name" type="Label" parent="."]

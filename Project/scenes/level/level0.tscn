@@ -21,46 +21,46 @@ position = Vector2( 33.9028, -121.838 )
 position = Vector2( 329.631, 316.177 )
 shape = SubResource( 1 )
 
-[node name="npcCommon" parent="." instance=ExtResource( 1 )]
-position = Vector2( 195.385, 152.159 )
-
 [node name="playerCommon" parent="." instance=ExtResource( 2 )]
 position = Vector2( -160, 160 )
 my_status = 1
-my_speed = Vector2( 30, 0 )
+my_speed = Vector2( 25, 0 )
 
 [node name="playerCommon2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -241.974, 158.273 )
-my_speed = Vector2( 30, 0 )
+my_speed = Vector2( 25, 0 )
 
 [node name="playerCommon3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -340.678, 158.273 )
-my_speed = Vector2( 30, 0 )
+my_speed = Vector2( 25, 0 )
 
 [node name="playerCommon4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 590.471, 149.949 )
+position = Vector2( 576, 160 )
 my_status = 1
 my_direcction = 0
-my_speed = Vector2( 30, 0 )
+my_speed = Vector2( 25, 0 )
 
 [node name="playerCommon5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 454.901, 152.327 )
+position = Vector2( 448, 160 )
 my_direcction = 0
-my_speed = Vector2( 30, 0 )
+my_speed = Vector2( 25, 0 )
 my_name = "killer66"
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="playerCommon6" parent="." instance=ExtResource( 4 )]
-position = Vector2( -64, 160 )
+position = Vector2( -32, 160 )
 my_status = 1
-my_speed = Vector2( 30, 0 )
+my_speed = Vector2( 25, 0 )
 
 [node name="playerCommon7" parent="." instance=ExtResource( 4 )]
 position = Vector2( 832, 160 )
 my_status = 1
 my_direcction = 0
-my_speed = Vector2( 30, 0 )
+my_speed = Vector2( 25, 0 )
+
+[node name="npcCommon" parent="." instance=ExtResource( 1 )]
+position = Vector2( 195.385, 152.159 )
+[connection signal="orden_npc" from="HUD" to="npcCommon" method="_on_HUD_orden_npc"]
 [connection signal="add_notification" from="npcCommon" to="HUD" method="_on_npc_add_notification"]
 [connection signal="delete_notification" from="npcCommon" to="HUD" method="_on_npc_delete_notification"]
-[connection signal="orden_npc" from="HUD" to="npcCommon" method="_on_HUD_orden_npc"]

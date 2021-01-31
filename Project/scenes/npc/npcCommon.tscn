@@ -190,7 +190,7 @@ animations = [ {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": false,
 "name": "DEFEAT",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
@@ -241,7 +241,7 @@ use_filter = true
 font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=50]
-length = 3.0
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("labelStateFix:modulate")
 tracks/0/interp = 1
@@ -249,7 +249,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5, 3 ),
+"times": PoolRealArray( 0, 1, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -276,13 +276,14 @@ collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="animatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.803032, -11.3071 )
+position = Vector2( -3, -12 )
 frames = SubResource( 45 )
-animation = "DEFEAT"
-frame = 3
+animation = "IDLE"
+frame = 1
 playing = true
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -2 )
 shape = SubResource( 46 )
 
 [node name="area2DVision" type="Area2D" parent="."]
@@ -300,7 +301,7 @@ position = Vector2( 0.529755, 0 )
 shape = SubResource( 48 )
 
 [node name="labelStateFix" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0.666667 )
+modulate = Color( 1, 1, 1, 0 )
 margin_left = -30.1265
 margin_top = -44.993
 margin_right = 29.8735
@@ -318,10 +319,10 @@ __meta__ = {
 
 [node name="statusIcon" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = -7.87962
-margin_top = -50.9458
-margin_right = 8.12038
-margin_bottom = -34.9458
+margin_left = -8.0
+margin_top = -48.0
+margin_right = 8.0
+margin_bottom = -32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

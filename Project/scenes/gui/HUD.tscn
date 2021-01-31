@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/hudManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/img/buttons/button_0.png" type="Texture" id=2]
@@ -13,6 +13,29 @@ size = 7
 outline_size = 1
 outline_color = Color( 0.0823529, 0.0705882, 0.0705882, 1 )
 font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 1
+outline_color = Color( 0.0823529, 0.0705882, 0.0705882, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "KET_TEXT"
+length = 0.06
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("hbcControls/btn2/btnl:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.06 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
+}
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -71,7 +94,7 @@ __meta__ = {
 [node name="hbcNotification" type="HBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_top = 5.0
+margin_top = 4.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -88,5 +111,55 @@ modulate = Color( 0.607843, 0.560784, 0.560784, 1 )
 self_modulate = Color( 0.2, 0.196078, 0.196078, 1 )
 position = Vector2( 400, 10 )
 texture = ExtResource( 7 )
+
+[node name="vbcNext" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 30.0
+margin_right = 192.0
+margin_bottom = 55.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labelNext" type="Label" parent="vbcNext"]
+margin_right = 384.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 2 )
+text = "VICTORIA"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ccbtn" type="CenterContainer" parent="vbcNext"]
+margin_top = 23.0
+margin_right = 384.0
+margin_bottom = 55.0
+
+[node name="btn3" type="TextureButton" parent="vbcNext/ccbtn"]
+margin_left = 160.0
+margin_right = 224.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[node name="btnl" type="Label" parent="vbcNext/ccbtn/btn3"]
+margin_right = 64.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 1 )
+text = "SIGUIENTE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="effectPlayer" type="AnimationPlayer" parent="."]
+anims/KET_TEXT = SubResource( 3 )
 [connection signal="pressed" from="hbcControls/btn" to="." method="_on_btn_pressed"]
 [connection signal="pressed" from="hbcControls/btn2" to="." method="_on_btn2_pressed"]
