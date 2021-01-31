@@ -7,7 +7,8 @@ var request_player = []
 var attend_request
 #SIGNALS
 signal add_notification(status, number)
-signal delete_notification 
+signal delete_notification
+signal next_interface(status) 
 
 func _ready():
 	$labelStateFix.text = "Oh...perdi mi codigo!"
@@ -68,10 +69,12 @@ func _on_animatedSprite_animation_finished():
 			print("GAME START")
 		"DEFEAT":
 			print("GAME OVER")
-			get_tree().set_pause(true)
+			emit_signal("next_interface",false)
+			#get_tree().set_pause(true)
 		"VICTORY":
 			print("WIN")
-			get_tree().set_pause(true)
+			emit_signal("next_interface",true)
+			#get_tree().set_pause(true)
 		_:
 			$animatedSprite.play("IDLE")
 

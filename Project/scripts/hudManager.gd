@@ -8,17 +8,13 @@ const  CENTER_KEY   = Vector2(195,8)
 var request_notifications = []
 var tweens = []
 var keys   = []
+var win
+var isPlaying = true
 #SIGNALS
 signal orden_npc(status)
 
 func _ready():
 	pass
-
-func _on_btnQuest_pressed():
-	emit_signal("orden_npc", 0)
-
-func _on_btnReward_pressed():
-	emit_signal("orden_npc", 1)
 
 func _on_npc_add_notification(status, number):
 	var new_key = $keyReward.duplicate() if status else  $keyQuest.duplicate() 
@@ -35,11 +31,14 @@ func _on_npc_delete_notification():
 	$hbcNotification.remove_child(first_notification)
 
 func _on_btn_pressed():
-	emit_signal("orden_npc", 0)
+	if isPlaying:
+		$effectPlayer.queue("KET_TEXT2")
+		emit_signal("orden_npc", 0)
 
 func _on_btn2_pressed():
-	$effectPlayer.queue("KET_TEXT")
-	emit_signal("orden_npc", 1)
+	if isPlaying:
+		$effectPlayer.queue("KET_TEXT")
+		emit_signal("orden_npc", 1)
 
 func create_tween(element, n):
 #	if !tweens.empty():
@@ -66,3 +65,21 @@ func _on_tween_end(object,_key):
 	$hbcNotification.add_child(request_notifications[keys.find(object)])
 	object.hide()
 
+func _on_npcCommon_next_interface(status):
+	win       = status
+	isPlaying = false
+	$vbcNext/labelNext.text = "VICTORY" if win else "DEFEAT"
+	$effectPlayer.play("NEXT_SHOW")
+
+func _on_btn3_pressed():
+	$effectPlayer.queue("KET_TEXT3")
+	$effectPlayer.queue("NEXT_HIDE")
+func _on_effectPlayer_animation_finished(anim_name):
+	match anim_name:
+		"NEXT_HIDE":
+			if win:
+				get_tree().change_scene(get_parent().next_scene)
+			else:
+				get_tree().reload_current_scene()
+		_:
+			pass

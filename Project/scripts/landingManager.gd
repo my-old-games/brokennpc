@@ -3,7 +3,7 @@ extends CanvasLayer
 
 
 func _on_btnPlay_pressed():
-	$effectPlayer.play("DROP_LABEL")
+	$effectPlayer.queue("DROP_LABEL")
 
 
 func _on_effectPlayer_animation_finished(anim_name):
