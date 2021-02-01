@@ -7,37 +7,35 @@
 [ext_resource path="res://scripts/levelManager.gd" type="Script" id=5]
 [ext_resource path="res://assets/level/background0.png" type="Texture" id=6]
 [ext_resource path="res://assets/level/flag.png" type="Texture" id=7]
+[ext_resource path="res://assets/sounds/music.ogg" type="AudioStream" id=8]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 717.212, 21.3126 )
-
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 40, 82 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
 region = Rect2( 40, 0, 40, 82 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
 region = Rect2( 80, 0, 40, 82 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 7 )
 region = Rect2( 120, 0, 40, 82 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
 region = Rect2( 160, 0, 40, 82 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
 region = Rect2( 200, 0, 40, 82 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "IDLE",
 "speed": 5.0
@@ -45,19 +43,9 @@ animations = [ {
 
 [node name="level0" type="Node2D"]
 script = ExtResource( 5 )
-level_defeat = 3
+level_defeat = 4
 level_win = 7
-next_scene = "res://scenes/gui/Landing.tscn"
-
-[node name="debugFloor" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2( 33.9028, -121.838 )
-collision_layer = 513
-collision_mask = 512
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="debugFloor"]
-position = Vector2( 329.631, 316.177 )
-shape = SubResource( 1 )
+next_scene = "res://scenes/gui/Credit.tscn"
 
 [node name="background" type="Sprite" parent="."]
 texture = ExtResource( 6 )
@@ -65,16 +53,15 @@ centered = false
 
 [node name="Flag0" type="AnimatedSprite" parent="."]
 position = Vector2( 48, 132 )
-frames = SubResource( 8 )
+frames = SubResource( 7 )
 animation = "IDLE"
-frame = 4
+frame = 1
 playing = true
 
 [node name="Flag1" type="AnimatedSprite" parent="."]
 position = Vector2( 363.534, 132 )
-frames = SubResource( 8 )
+frames = SubResource( 7 )
 animation = "IDLE"
-frame = 3
 playing = true
 
 [node name="playerCommon" parent="." instance=ExtResource( 2 )]
@@ -85,22 +72,25 @@ my_speed = Vector2( 25, 0 )
 [node name="playerCommon2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -241.974, 154 )
 my_speed = Vector2( 25, 0 )
+my_name = "theOne"
 
 [node name="playerCommon3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -340.678, 154 )
 my_speed = Vector2( 25, 0 )
+my_name = "DragonSlayer"
 
 [node name="playerCommon4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 576, 154 )
 my_status = 1
 my_direcction = 0
 my_speed = Vector2( 25, 0 )
+my_name = "kirita"
 
 [node name="playerCommon5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 448, 154 )
 my_direcction = 0
 my_speed = Vector2( 25, 0 )
-my_name = "killer66"
+my_name = "GoldenBall"
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
@@ -108,15 +98,22 @@ my_name = "killer66"
 position = Vector2( -32, 154 )
 my_status = 1
 my_speed = Vector2( 25, 0 )
+my_name = "Master777"
 
 [node name="playerCommon7" parent="." instance=ExtResource( 4 )]
 position = Vector2( 832, 154 )
 my_status = 1
 my_direcction = 0
 my_speed = Vector2( 25, 0 )
+my_name = "TgeDragon"
 
 [node name="npcCommon" parent="." instance=ExtResource( 1 )]
 position = Vector2( 192.743, 154 )
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+bus = "ambient"
 [connection signal="orden_npc" from="HUD" to="npcCommon" method="_on_HUD_orden_npc"]
 [connection signal="add_notification" from="npcCommon" to="HUD" method="_on_npc_add_notification"]
 [connection signal="delete_notification" from="npcCommon" to="HUD" method="_on_npc_delete_notification"]

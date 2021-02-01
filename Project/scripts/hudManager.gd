@@ -1,8 +1,8 @@
 extends CanvasLayer
 #CONST
-const  ICON_ROUTE = "res://assets/gui/img/icons_gui_%s.png"
+const  ICON_ROUTE = "res://assets/gui/img/iconsSquare_%s.png"
 const  POSITION_KEY = Vector2(400,8)
-const  SPRITE_KEY   = Vector2(10,0)
+const  SPRITE_KEY   = Vector2(16,0)
 const  CENTER_KEY   = Vector2(195,8)
 #VAR
 var request_notifications = []
@@ -27,7 +27,7 @@ func _on_npc_add_notification(status, number):
 	request_notifications.push_back(new_notification)
 
 func _on_npc_delete_notification():
-	var first_notification = $hbcNotification.get_children().pop_front()
+	var first_notification = $NinePatchRect/hbcNotification.get_children().pop_front()
 	$NinePatchRect/hbcNotification.remove_child(first_notification)
 
 func _on_btn_pressed():
@@ -52,7 +52,7 @@ func create_tween(element, n):
 #			pass
 #	else:
 	var tween = new_tween()
-	tween.interpolate_property(element, "position", element.position, CENTER_KEY + (SPRITE_KEY * n) , 2 , Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(element, "position", element.position, CENTER_KEY + (SPRITE_KEY * n) , 3 , Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 
 func new_tween():
@@ -71,6 +71,10 @@ func _on_npcCommon_next_interface(status):
 	isPlaying = false
 	$vbcNext/labelNext.text = "VICTORY" if win else "DEFEAT"
 	$effectPlayer.play("NEXT_SHOW")
+	if win:
+		$Win.play()
+	else:
+		$Defeat.play()
 
 func _on_btn3_pressed():
 	$effectPlayer.queue("KET_TEXT3")

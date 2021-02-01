@@ -13,6 +13,7 @@ var direcction
 func _ready():
 	add_to_group(DATA.get_key_status(my_status))
 	set_direcction()
+	$name.text = my_name
 	$animatedSprite.flip_h = !my_direcction
 	if($animatedSprite.flip_h):
 		fix_flip()

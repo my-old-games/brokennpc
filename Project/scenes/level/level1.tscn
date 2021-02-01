@@ -1,0 +1,138 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/npc/npcCommon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/player/playerCommon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/gui/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/player/playerMage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/levelManager.gd" type="Script" id=5]
+[ext_resource path="res://assets/level/background0.png" type="Texture" id=6]
+[ext_resource path="res://assets/level/flag.png" type="Texture" id=7]
+[ext_resource path="res://assets/sounds/music.ogg" type="AudioStream" id=8]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 40, 82 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 40, 0, 40, 82 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 80, 0, 40, 82 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 120, 0, 40, 82 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 160, 0, 40, 82 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 200, 0, 40, 82 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "IDLE",
+"speed": 5.0
+} ]
+
+[node name="level1" type="Node2D"]
+script = ExtResource( 5 )
+level_defeat = 5
+level_win = 2
+next_scene = "res://scenes/gui/Credit.tscn"
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Flag0" type="AnimatedSprite" parent="."]
+position = Vector2( 48, 132 )
+frames = SubResource( 7 )
+animation = "IDLE"
+frame = 2
+playing = true
+
+[node name="Flag1" type="AnimatedSprite" parent="."]
+position = Vector2( 363.534, 132 )
+frames = SubResource( 7 )
+animation = "IDLE"
+frame = 1
+playing = true
+
+[node name="playerCommon" parent="." instance=ExtResource( 2 )]
+position = Vector2( -160, 154 )
+my_status = 1
+my_speed = Vector2( 25, 0 )
+
+[node name="playerCommon2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -241.974, 154 )
+my_speed = Vector2( 25, 0 )
+my_name = "theOne"
+
+[node name="playerCommon8" parent="." instance=ExtResource( 2 )]
+position = Vector2( -288, 154 )
+my_speed = Vector2( 25, 0 )
+my_name = "theOne"
+
+[node name="playerCommon3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -340.678, 154 )
+my_speed = Vector2( 25, 0 )
+my_name = "DragonSlayer"
+
+[node name="playerCommon4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 576, 154 )
+my_status = 1
+my_direcction = 0
+my_speed = Vector2( 25, 0 )
+my_name = "kirita"
+
+[node name="playerCommon5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 448, 154 )
+my_direcction = 0
+my_speed = Vector2( 25, 0 )
+my_name = "GoldenBall"
+
+[node name="playerCommon9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 540, 152 )
+my_direcction = 0
+my_speed = Vector2( 30, 0 )
+my_name = "GoldenBall"
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="playerCommon6" parent="." instance=ExtResource( 4 )]
+position = Vector2( -32, 154 )
+my_status = 1
+my_speed = Vector2( 25, 0 )
+my_name = "Master777"
+
+[node name="playerCommon10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 485, 154 )
+my_status = 1
+my_speed = Vector2( 25, 0 )
+my_name = "Master777"
+
+[node name="playerCommon7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 832, 154 )
+my_status = 1
+my_direcction = 0
+my_speed = Vector2( 25, 0 )
+my_name = "TgeDragon"
+
+[node name="npcCommon" parent="." instance=ExtResource( 1 )]
+position = Vector2( 192.743, 154 )
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+bus = "ambient"
+[connection signal="orden_npc" from="HUD" to="npcCommon" method="_on_HUD_orden_npc"]
+[connection signal="add_notification" from="npcCommon" to="HUD" method="_on_npc_add_notification"]
+[connection signal="delete_notification" from="npcCommon" to="HUD" method="_on_npc_delete_notification"]
+[connection signal="next_interface" from="npcCommon" to="HUD" method="_on_npcCommon_next_interface"]

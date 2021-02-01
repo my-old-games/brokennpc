@@ -71,7 +71,7 @@ my_name = "killer666"
 position = Vector2( 3, -12 )
 frames = SubResource( 9 )
 animation = "WALK"
-frame = 3
+frame = 2
 playing = true
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]

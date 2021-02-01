@@ -1,34 +1,49 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scripts/hudManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/img/buttons/button_0.png" type="Texture" id=2]
 [ext_resource path="res://assets/gui/img/buttons/button_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/gui/img/buttons/button_2.png" type="Texture" id=4]
 [ext_resource path="res://assets/gui/font/damase_v.2.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/gui/img/icons_gui_0.png" type="Texture" id=6]
-[ext_resource path="res://assets/gui/img/icons_gui_1.png" type="Texture" id=7]
+[ext_resource path="res://assets/gui/img/iconsSquare_0.png" type="Texture" id=6]
+[ext_resource path="res://assets/gui/img/iconsSquare_1.png" type="Texture" id=7]
+[ext_resource path="res://assets/sounds/defeat.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/victory.ogg" type="AudioStream" id=9]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="InputEventAction" id=1]
+action = "btn_quest"
+pressed = true
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 7
 outline_size = 1
 outline_color = Color( 0.0823529, 0.0705882, 0.0705882, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="Gradient" id=9]
-offsets = PoolRealArray( 0.351124, 0.921348, 1 )
-colors = PoolColorArray( 0.364706, 0.360784, 0.27451, 1, 1, 1, 1, 0, 0.0588235, 0.0470588, 0.0470588, 0.486275 )
+[sub_resource type="InputEventAction" id=4]
+action = "btn_reward"
+pressed = true
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 9 )
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0.311798 )
+colors = PoolColorArray( 0.195313, 0.17128, 0.0671387, 0.509804 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
 size = 20
 outline_size = 1
 outline_color = Color( 0.0823529, 0.0705882, 0.0705882, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "KET_TEXT"
+[sub_resource type="Animation" id=9]
 length = 0.06
 step = 0.01
 tracks/0/type = "value"
@@ -44,8 +59,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "KET_TEXT2"
+[sub_resource type="Animation" id=10]
 length = 0.06
 step = 0.01
 tracks/0/type = "value"
@@ -61,8 +75,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "KET_TEXT3"
+[sub_resource type="Animation" id=11]
 length = 0.06
 step = 0.01
 tracks/0/type = "value"
@@ -78,8 +91,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "NEXT_HIDE"
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("vbcNext:modulate")
 tracks/0/interp = 1
@@ -93,7 +105,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=13]
 tracks/0/type = "value"
 tracks/0/path = NodePath("vbcNext:modulate")
 tracks/0/interp = 1
@@ -127,6 +139,8 @@ __meta__ = {
 margin_left = 126.0
 margin_right = 190.0
 margin_bottom = 32.0
+shortcut_in_tooltip = false
+shortcut = SubResource( 2 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
@@ -134,7 +148,7 @@ texture_hover = ExtResource( 4 )
 [node name="btnl" type="Label" parent="hbcControls/btn"]
 margin_right = 64.0
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "QUEST"
 align = 1
 valign = 1
@@ -146,6 +160,8 @@ __meta__ = {
 margin_left = 194.0
 margin_right = 258.0
 margin_bottom = 32.0
+shortcut_in_tooltip = false
+shortcut = SubResource( 5 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
@@ -154,7 +170,7 @@ texture_hover = ExtResource( 4 )
 margin_top = 0.333333
 margin_right = 64.0
 margin_bottom = 30.3333
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "REWARD"
 align = 1
 valign = 1
@@ -167,7 +183,7 @@ anchor_right = 1.0
 margin_right = 3.05176e-05
 margin_bottom = 16.0
 rect_min_size = Vector2( 0, 16 )
-texture = SubResource( 8 )
+texture = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -208,7 +224,7 @@ __meta__ = {
 [node name="labelNext" type="Label" parent="vbcNext"]
 margin_right = 384.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 8 )
 text = "VICTORIA"
 align = 1
 valign = 1
@@ -233,7 +249,7 @@ texture_hover = ExtResource( 4 )
 margin_top = 0.333333
 margin_right = 64.0
 margin_bottom = 30.3333
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "NEXT"
 align = 1
 valign = 1
@@ -242,11 +258,19 @@ __meta__ = {
 }
 
 [node name="effectPlayer" type="AnimationPlayer" parent="."]
-anims/KET_TEXT = SubResource( 3 )
-anims/KET_TEXT2 = SubResource( 4 )
-anims/KET_TEXT3 = SubResource( 5 )
-anims/NEXT_HIDE = SubResource( 6 )
-anims/NEXT_SHOW = SubResource( 7 )
+anims/KET_TEXT = SubResource( 9 )
+anims/KET_TEXT2 = SubResource( 10 )
+anims/KET_TEXT3 = SubResource( 11 )
+anims/NEXT_HIDE = SubResource( 12 )
+anims/NEXT_SHOW = SubResource( 13 )
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "ambient"
+
+[node name="Defeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "ambient"
 [connection signal="pressed" from="hbcControls/btn" to="." method="_on_btn_pressed"]
 [connection signal="pressed" from="hbcControls/btn2" to="." method="_on_btn2_pressed"]
 [connection signal="pressed" from="vbcNext/ccbtn/btn3" to="." method="_on_btn3_pressed"]

@@ -13,5 +13,6 @@ func _on_effectPlayer_animation_finished(anim_name):
 			$effectPlayer.play("HIDE_ICON")
 			$hbcMain/vbcNPC/ccNPC/AnimatedSprite.play("READ")
 		"HIDE_ICON":
-			 get_tree().change_scene("res://scenes/level/level0.tscn")
+			$music.stop()
+			get_tree().change_scene("res://scenes/level/level0.tscn")
 		

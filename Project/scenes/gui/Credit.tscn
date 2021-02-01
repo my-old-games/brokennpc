@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/npc/img/npcCommon.png" type="Texture" id=1]
+[ext_resource path="res://assets/sounds/credit.ogg" type="AudioStream" id=2]
 [ext_resource path="res://assets/gui/font/marietta-seven.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/gui/font/damase_v.2.ttf" type="DynamicFontData" id=7]
 
@@ -22,14 +23,14 @@ outline_color = Color( 0.0117647, 0.176471, 0.0235294, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=24]
+[sub_resource type="DynamicFont" id=5]
 size = 5
 outline_size = 1
 outline_color = Color( 0.027451, 0.0313726, 0.027451, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=25]
+[sub_resource type="DynamicFont" id=6]
 size = 8
 outline_size = 1
 outline_color = Color( 0.2, 0.156863, 0.0196078, 1 )
@@ -38,25 +39,25 @@ extra_spacing_top = 4
 extra_spacing_char = 1
 font_data = ExtResource( 7 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 384, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 384, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 384, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 96, 384, 32, 64 )
 
-[sub_resource type="SpriteFrames" id=19]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "WIN",
 "speed": 5.0
@@ -95,50 +96,63 @@ __meta__ = {
 }
 
 [node name="vbcIntro" type="VBoxContainer" parent="hbcMain"]
-margin_left = 51.0
-margin_right = 265.0
+margin_left = 48.0
+margin_right = 267.0
 margin_bottom = 216.0
 custom_constants/separation = 8
 alignment = 1
 
 [node name="cccTitle" type="CenterContainer" parent="hbcMain/vbcIntro"]
-margin_top = 83.0
-margin_right = 214.0
-margin_bottom = 99.0
+margin_top = 65.0
+margin_right = 219.0
+margin_bottom = 81.0
 
 [node name="Title" type="Label" parent="hbcMain/vbcIntro/cccTitle"]
-margin_right = 214.0
+margin_left = 2.0
+margin_right = 216.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 4 )
 text = "BROKEN NPC"
 
 [node name="cccEstudio" type="CenterContainer" parent="hbcMain/vbcIntro"]
-margin_top = 107.0
-margin_right = 214.0
-margin_bottom = 113.0
+margin_top = 89.0
+margin_right = 219.0
+margin_bottom = 95.0
 
 [node name="Title2" type="Label" parent="hbcMain/vbcIntro/cccEstudio"]
-margin_left = 63.0
-margin_right = 151.0
+margin_left = 65.0
+margin_right = 153.0
 margin_bottom = 6.0
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 5 )
 text = "Chatora Games"
 
 [node name="cccTeam" type="CenterContainer" parent="hbcMain/vbcIntro"]
-margin_top = 121.0
-margin_right = 214.0
-margin_bottom = 133.0
+margin_top = 103.0
+margin_right = 219.0
+margin_bottom = 115.0
 
 [node name="Title3" type="Label" parent="hbcMain/vbcIntro/cccTeam"]
-margin_left = 22.0
-margin_right = 191.0
+margin_left = 25.0
+margin_right = 194.0
 margin_bottom = 12.0
-custom_fonts/font = SubResource( 25 )
+custom_fonts/font = SubResource( 6 )
 text = "Team: Alus Martinez y Gaston Caminiti"
 
+[node name="cccTeam2" type="CenterContainer" parent="hbcMain/vbcIntro"]
+margin_top = 123.0
+margin_right = 219.0
+margin_bottom = 150.0
+
+[node name="Title3" type="Label" parent="hbcMain/vbcIntro/cccTeam2"]
+margin_right = 219.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 6 )
+text = "Music: Ancient Dragon: Classic JRPG Music Pack
+Created/distributed by Rest! CC BY-SA 4.0"
+
 [node name="vbcNPC" type="VBoxContainer" parent="hbcMain"]
-margin_left = 269.0
-margin_right = 333.0
+margin_left = 271.0
+margin_right = 335.0
 margin_bottom = 216.0
 custom_constants/separation = -22
 alignment = 1
@@ -151,8 +165,13 @@ rect_min_size = Vector2( 64, 94 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="hbcMain/vbcNPC/ccNPC"]
 scale = Vector2( 2, 2 )
-frames = SubResource( 19 )
+frames = SubResource( 11 )
 animation = "WIN"
 frame = 1
 playing = true
 centered = false
+
+[node name="Credit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+bus = "intro"

@@ -11,7 +11,7 @@ signal delete_notification
 signal next_interface(status) 
 
 func _ready():
-	$labelStateFix.text = "Oh...perdi mi codigo!"
+	$labelStateFix.text = "Oh...I lost my code!"
 	$animatedSprite.play("PANIC")
 	$effectPlayer.queue("BLINK_DIALOG")
 	attend_request = 0
@@ -37,6 +37,9 @@ func _on_area2DInteraction_body_entered(body):
 	body.waiting(true)
 	if(defeat_condition()):
 		shutdown()
+		$statusIcon.hide()
+		$labelStateFix.text = "The deadlock!"
+		$effectPlayer.queue("BLINK_DIALOG")
 		$animatedSprite.play("DEFEAT")
 
 func _on_HUD_orden_npc(status):
@@ -50,6 +53,9 @@ func _on_HUD_orden_npc(status):
 			emit_signal("delete_notification")
 			attend_request += 1
 			if(win_condition()):
+				$statusIcon.hide()
+				$labelStateFix.text = "I found my IA!"
+				$effectPlayer.queue("BLINK_DIALOG")
 				$animatedSprite.play("VICTORY")
 
 func set_status_animation(status):
@@ -68,11 +74,11 @@ func _on_animatedSprite_animation_finished():
 		"PANIC":
 			print("GAME START")
 		"DEFEAT":
-			print("GAME OVER")
+			get_parent().stop_music()
 			emit_signal("next_interface",false)
 			#get_tree().set_pause(true)
 		"VICTORY":
-			print("WIN")
+			get_parent().stop_music()
 			emit_signal("next_interface",true)
 			#get_tree().set_pause(true)
 		_:
@@ -83,6 +89,9 @@ func win_condition():
 
 func defeat_condition():
 	return get_parent().level_defeat == request_player.size()
+
+func last_chance():
+	return get_parent().level_defeat == request_player.size() + 1
 
 func shutdown():
 	$area2DInteraction.set_deferred("monitoring", false)
